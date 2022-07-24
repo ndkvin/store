@@ -1,0 +1,113 @@
+.page-detail {
+
+  .store-gallery {
+
+    .thumbnail-image {
+
+      border: 2px solid white;
+      border-radius: 10px;
+      &:hover {
+
+        border:2px solid #FF7158
+
+      }
+
+    }
+
+    .thumbnail-image.active {
+
+      border:2px solid #FF7158
+
+    }
+
+    
+  }
+
+  .detail-page-container {
+
+    .store-heading {
+
+      .name {
+
+        font-weight: 400;
+        font-size: 24px;
+
+        color: #0C0D36;
+
+      }
+
+      .owner {
+
+        font-weight: 400;
+        font-size: 14px;
+
+        color: #979797;
+
+      }
+
+      .price {
+
+        margin-top: 5px;
+        font-weight: 500;
+        font-size: 18px;
+
+        color: #FF7158;
+
+      }
+
+      .description {
+
+        font-weight: 400;
+        font-size: 16px;
+
+        color: #525252;
+
+      }
+
+    }
+
+    .customer-review {
+
+      .title {
+
+        margin-top: 30px;
+        margin-bottom: 16px;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 27px;
+
+        color: #0C0D36;
+
+      }
+
+      .review-item {
+
+        .testimoni-image {
+          height: 61px;
+        }
+
+        .review-text {
+
+          margin-top: 15px;
+          margin-left: 16px;
+          .name {
+            font-weight: 500;
+            font-size: 16px;
+  
+            color: #0C0D36;
+          }
+  
+          .review-content {
+            font-weight: 400;
+            font-size: 16px;
+  
+            color: #525252;
+          }
+        }
+      }
+
+    }
+
+  }
+
+}

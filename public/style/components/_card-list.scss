@@ -1,0 +1,14 @@
+.card-list {
+  text-align: center;
+  align-items: center;
+  line-height: 40px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #0C0D36;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    color: #0C0D36;
+  }
+}

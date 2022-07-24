@@ -1,0 +1,42 @@
+.navbar-store {
+  padding-top: 15px;
+
+  @include media-breakpoint-down(md) {
+    background-color: #fff !important;
+  }
+
+  .nav-item {
+    .nav-link {
+      @include media-breakpoint-up(lg) {
+        margin-left: 10px;
+        margin-right:10px
+      }
+    }
+  }
+
+  .profile-picture {
+    max-height: 45px
+  }
+
+  .cart-badge {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: #29A867;
+    margin-left: -10px;
+    color: white;
+    padding: 5px;
+    font-size: 9px;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+
+.navbar-fixed-top.scrolled {
+  background-color: #fff !important;
+  transition: background-color 200ms linear;
+}
+
+
+

@@ -1,0 +1,49 @@
+.component-products {
+  margin-bottom: 20px;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  .product-thumbnail {
+    height: 150px;
+    width: 100%;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+
+    &:hover,
+    &:focus {
+      .product-image {
+        transform: scale(1.1)
+      }
+    }
+
+    .product-image {
+      height: 100%;
+      width: 100%;
+
+      background-color: #ddd;
+      background-size: cover;
+      background-position: center;
+
+      transition: all 0.5s ease-in-out
+    }
+  }
+
+  .product-name {
+    color: #0C0D36;
+    font-size: 18px;
+    margin: 12px 0 10px 0px;
+    font-weight: 400
+  }
+
+  .product-price {
+    color: #FF7158;
+    font-size: 16px;
+    font-weight: 500
+  }
+}

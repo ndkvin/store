@@ -1,0 +1,175 @@
+.page-dashboard {
+  #page-content-wrapper {
+    background-color: #E5E5E5;
+    min-height: 100vh;
+    width: 100vw;
+
+    .section-content {
+      margin-top: 30px;
+
+      .dashboard-heading {
+        .dashboard-title {
+          font-weight: 400;
+          font-size: 24px;
+          color: #0C0D36;
+        }
+
+        .dashboard-subtitle {
+          font-weight: 300;
+          font-size: 16px;
+          color: #9191A9;
+        }
+      }
+
+      .dashboard-content {
+        .card {
+          border-radius: 8px;
+
+          .dashboard-card-title {
+            font-weight: 400;
+            font-size: 16px;
+            color: #C5C5C5;
+          }
+
+          .dashboard-card-subtitle {
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 48px;
+            color: #0C0D36;
+          }
+        }
+
+        .recent-transactions {
+          h5 {
+            font-weight: 500;
+            font-size: 18px;
+            color: #0C0D36;
+          }
+        }    
+      }
+    }
+  }
+
+  #sidebar-wrapper {
+    margin-top: 60px;
+    margin-left: -15rem;
+    min-height: 100vh;
+    transition: margin 0.25s ease-out;
+
+    .sidebar-heading {
+      padding: 0.875rem 1.25rem;
+      font-size: 1.25rem;
+    }
+
+    .list-group {
+      width: 15rem;
+    }
+  }
+
+  #wrapper {
+    &.toggled {
+      #sidebar-wrapper {
+        margin-left: 0;
+      }
+    }
+  }
+
+
+  .navbar-store {
+    margin-top: 0;
+    background-color: #f5f5f5;
+    box-shadow: 0px 4px 5px #cacad1;
+
+    @include media-breakpoint-up(md) {
+      background: transparent;
+      box-shadow: none;
+    }
+  }
+
+  .list-group-item {
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #c5c5c5;
+
+    &.active {
+      background: linear-gradient(270deg, rgba(255, 113, 88, 0.32) 2%, rgba(255, 255, 255, 0) 100%);
+      color: #0C0D36;
+      border-right: 4px solid #ff7158;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    #sidebar-wrapper {
+      margin-left: 0;
+      margin-top: 0;
+    }
+
+    #page-content-wrapper {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+
+  .nav-pills {
+    .nav-link {
+      font-weight: 400;
+      font-size: 18px;
+      color: #9191A9;
+      background-color: #E5E5E5;
+      border-radius: 0;
+      padding: 0;
+      margin-right: 20px;
+      &.active {
+        border-bottom: 2px solid #0C0D36;
+        color: #0C0D36;
+      }
+    }
+  }
+  .card-product {
+
+    &:hover {
+      text-decoration: none;
+    }
+    .card-body {
+      .product-name {
+        font-weight: 400;
+        font-size: 18px;
+        color: #0C0D36;
+        margin: 20px 0 0 10px;
+      }
+
+      .category {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #C5C5C5;
+        margin: 5px 0 10px 10px;
+      }
+    }
+  }
+
+  .galerry-container {
+    .delete-image {
+      display: block;
+      position: absolute;
+      top: -10px;
+      right: 0;
+    }
+  }
+
+  #transaction-detail {
+    .product-title {
+      font-weight: 400;
+      font-size: 16px;
+      color: #C5C5C5;
+    }
+
+    .product-subtitle {
+      font-weight: 400;
+      font-size: 18px;
+      color: #0C0D36;
+    }
+  }
+}
