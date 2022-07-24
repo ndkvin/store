@@ -4,14 +4,14 @@
   </div>
 
   <div class="list-group list-group-flush">
-    <a href={{ url('dashboard') }} class="list-group-item list-group-item-action active">
+    <a href={{ url('dashboard') }} class="list-group-item list-group-item-action">
       Dashboard
     </a>
     <a href={{ url('dashboard/products') }} class="list-group-item list-group-item-action">
-      My Product
+      My Products
     </a>
     <a href={{ url('dashboard/transactions') }} class="list-group-item list-group-item-action">
-      Transaction
+      Transactions
     </a>
     <a href={{ url('dashboard/settings') }} class="list-group-item list-group-item-action">
       Store Settings

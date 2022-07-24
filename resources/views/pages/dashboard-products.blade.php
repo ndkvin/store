@@ -18,14 +18,14 @@
       <div class="dashboard-content container dashboard-setting">
         <div class="row">
           <div class="col-12">
-            <a href="/dashboard-add-product.html" class="btn btn-success ml-n3 py-2">
+            <a href={{ url('dashboard/products/create') }} class="btn btn-success ml-n3 py-2 text-white">
               Add New Product
             </a>
           </div>
         </div>
         <div class="row mt-4">
           <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-4">
-            <a href="/dashboard-product-detail.html" class="card card-product d-block">
+            <a href={{ url('dashboard/products/detail/1111') }} class="card card-product d-block">
               <div class="card-body  ml-n3">
                 <img src="/images/product-card-1.png" alt="product image" class="w-100 ml-2">
                 <h5 class="product-name">

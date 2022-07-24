@@ -16,4 +16,12 @@ class DashboardProductsController extends Controller
     public function index() {
       return view('pages.dashboard-products');
     }
+
+    public function create() {
+      return view('pages.dashboard-product-create');
+    }
+
+    public function detail() {
+      return view('pages.dashboard-product-detail');
+    }
 }
