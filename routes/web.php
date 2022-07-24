@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardProductsController;
 use App\Http\Controllers\DashboardTransactionsController;
+use App\Http\Controllers\DashboardSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +33,8 @@ Route::get('/dashboard/products', [DashboardProductsController::class, 'index'])
 Route::get('/dashboard/products/create', [DashboardProductsController::class, 'create'])->name('dashboard-product-create');
 Route::get('/dashboard/products/detail/{id}', [DashboardProductsController::class, 'detail'])->name('dashboard-product-detail');
 Route::get('/dashboard/transactions', [DashboardTransactionsController::class, 'index'])->name('dashboard-product');
+Route::get('/dashboard/transactions/detail/{id}', [DashboardTransactionsController::class, 'detail'])->name('dashboard-detail-product');
+Route::get('/dashboard/settings', [DashboardSettingsController::class, 'store'])->name('dashboard-settings');
+Route::get('/dashboard/account', [DashboardSettingsController::class, 'account'])->name('dashboard-account');
 
 Auth::routes();
