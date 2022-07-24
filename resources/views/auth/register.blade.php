@@ -164,9 +164,9 @@
               <button type="submit" class="btn btn-success btn-block mt-4">
                 Sign Up Now
               </button>
-              <button type="submit" class="btn btn-signup btn-block mt-2">
+              <a class="btn btn-signup btn-block mt-2" href={{ url('login') }}>
                 Back to Sign In
-              </button>
+              </a>
             </form>
           </div>
         </div>
