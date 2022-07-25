@@ -58,29 +58,19 @@
                       <p class="text-muted">
                         Apakah saat ini toko anda buka?
                       </p>
-                      <div
-                        class="custom-control custom-radio custom-control-inline"
-                      >
-                        <input
-                          class="custom-control-input"
-                          type="radio"
-                        ></input>
-                        <label class="custom-control-label">
-                          Buka
-                        </label>
-                      </div>
-                      <div
-                        class="custom-control custom-radio custom-control-inline"
-                      >
-                        <input
-                          class="custom-control-input"
-                          type="radio"
-                        ></input>
-                        <label
-                          makasih
-                          class="custom-control-label"
-                          >Sementara tutup</label
-                        >
+                      <div class="row">
+                        <div class="form-check ml-3">
+                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="buka">
+                          <label class="form-check-label" for="buka">
+                            Buka
+                          </label>
+                        </div>
+                        <div class="form-check ml-3">
+                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="tutup" checked>
+                          <label class="form-check-label" for="tutup">
+                            Sementara tutup
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>

@@ -118,13 +118,17 @@
 @endsection
 
 @push('addone-script')
-  <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+  <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
   <script>
     const thisFileUpload = () => {
       document.getElementById("file").click()
     }
   </script>
   <script>
-    CKEDITOR.replace('editor');
+    ClassicEditor
+    .create( document.querySelector('#editor'))
+    .catch( error => {
+        console.error( error );
+    } );
   </script>
 @endpush

@@ -15,7 +15,7 @@
           Transaction detail
         </p>
       </div>
-      <div class="dashboard-content container" id="transaction-detail">
+      <div class="dashboard-content container" id="transactionDetail">
         <div class="row">
           <div class="col-12">
             <div class="card py-4 px-4">
@@ -148,7 +148,7 @@
                         <option value="SUCCESS">Success</option>
                       </select>
                     </div>
-                    <template v-if="status === 'SHIPPING'">
+                    <div class="row ml-1" v-if="status == 'SHIPPING'">
                       <div class="col-md-6 mt-4">
                         <div class="product-title">
                           Input Resi
@@ -169,7 +169,7 @@
                           Update Resi
                         </button>
                       </div>
-                    </template>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -189,13 +189,14 @@
 @push('addone-script')
   <script src="/vendor/vue/vue.js"></script>
   <script>
-    console.log("this is a test")
-    const transactionDetail = new Vue({
-      el: "#transaction-detail",
+    var transactionDetail = new Vue({
+      el: "#transactionDetail",
       data: {
-        status: "PENDING",
+        status: "SHIPPING",
         resi: "BDO12308012132",
+        is_store_open: true,
       },
     });
+  </script>
   </script>
 @endpush
