@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('transaction', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('users_id');
             $table->integer('insurence_price');
             $table->string('status');
-            $table->string('resi');
             $table->integer('total_price');
             $table->integer('shipping_price');
+            $table->string('code');
 
             $table->softDeletes();
             $table->timestamps();
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction');
+        Schema::dropIfExists('transactions');
     }
 };

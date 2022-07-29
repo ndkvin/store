@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comment', function (Blueprint $table) {
+        Schema::create('transaction_details', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('transaction_id');
             $table->foreignId('product_id');
-            $table->foreignId('users_id');
-            $table->string('content_comment');
-
+            $table->integer('amount');
+            $table->foreignId('total_price');
+            $table->string('resi');
+            $table->string('shipping_status');
+            $table->string('code');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comment');
+        Schema::dropIfExists('transaction_details');
     }
 };

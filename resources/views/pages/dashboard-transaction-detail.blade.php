@@ -52,7 +52,7 @@
                       </div>
                       <div class="col-12 col-md-6 mt-4">
                         <div class="product-title">
-                          Status
+                          Paymemt Status
                         </div>
                         <div class="product-subtitle text-danger">
                           Pending
@@ -62,7 +62,7 @@
                         <div class="product-title">
                           Total Amount
                         </div>
-                        <div class="product-subtitle text-danger">
+                        <div class="product-subtitle">
                           $123,456
                         </div>
                       </div>
@@ -70,7 +70,7 @@
                         <div class="product-title">
                           Mobile Phone
                         </div>
-                        <div class="product-subtitle text-danger">
+                        <div class="product-subtitle">
                           +621234567890
                         </div>
                       </div>
@@ -135,7 +135,7 @@
                       </div>
                     </div>
                     <div class="col-12 mt-4">
-                      <label for="">Status</label>
+                      <label for="">Shipping Status</label>
                       <select 
                         name="status" 
                         id="status"
