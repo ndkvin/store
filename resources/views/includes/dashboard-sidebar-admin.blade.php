@@ -4,7 +4,7 @@
   </div>
 
   <div class="list-group list-group-flush">
-    <a href={{ url('dashboard') }} class="list-group-item list-group-item-action">
+    <a href={{ url('/admin/dashboard') }} class="list-group-item list-group-item-action">
       Dashboard
     </a>
     <a href={{ url('') }} class="list-group-item list-group-item-action">
