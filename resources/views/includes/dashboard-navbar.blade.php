@@ -22,7 +22,7 @@
         <ul class="navbar-nav d-inline-block d-lg-none">
           <li class="nav-item">
             <a href="#" class="nav-link d-inline-block">
-              Hi An        @yield('content')dika
+              Hi Andika
             </a>
           </li>
           <li class="nav-item d-inline-block">
