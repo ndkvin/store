@@ -81,8 +81,8 @@ class CategoryAdminController extends Controller
       $data['image'] = $request->file('image')->store('assets/category', 'public');
 
       Category::create($data);
-      print_r($data);
-      // return redirect()->route('category.index');
+
+      return redirect()->route('category.index');
     }
 
     /**
@@ -104,7 +104,10 @@ class CategoryAdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Category::findOrFail($id);
+        return view('pages.admin.category.edit', [
+          'item' => $data,
+        ]);
     }
 
     /**
@@ -116,7 +119,16 @@ class CategoryAdminController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
-        //
+      $data = $request->all();
+
+      $data['slug'] = Str::slug($request->name);
+      $data['image'] = $request->file('image')->store('assets/category', 'public');
+
+      $item = Category::findOrFail($id);
+
+      $item->update($data);
+
+      return redirect()->route('category.index');
     }
 
     /**
@@ -127,6 +139,8 @@ class CategoryAdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $data = Category::findOrFail($id);
+      $data->delete();
+      return redirect()->route('category.index');
     }
 }

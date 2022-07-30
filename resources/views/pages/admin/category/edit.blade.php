@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Create Category Dashboard
+  Edit Category Dashboard
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
         <div class="dashboard-heading">
             <h2 class="dashboard-title">Catrgory</h2>
             <p class="dashboard-subtitle">
-                Create New Category
+                Edit Category
             </p>
         </div>
         <div class="dashboard-content">
@@ -33,7 +33,8 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
-                  <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
+                  <form action="{{ route('category.update', $item->id) }}" method="post" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                     <div class="row">
                       <div class="col-md-12">
@@ -44,6 +45,7 @@
                             class="form-control" 
                             id="name" 
                             name="name"
+                            value={{ $item->name }}
                             required
                           />
                         </div>
@@ -54,9 +56,9 @@
                             class="form-control" 
                             id="image" 
                             name="image"
-                            required
                           />
                         </div>
+                        <img src={{ Storage::url($item->image) }} alt="" class="w-25">
                       </div>
                     </div>
                     <div class="row">

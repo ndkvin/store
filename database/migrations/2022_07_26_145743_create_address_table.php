@@ -16,13 +16,14 @@ return new class extends Migration
         Schema::create('address', function (Blueprint $table) {
             $table->id();
             $table->foreignId('users_id');
-            $table->longText('address_one');
-            $table->longText('address_two');
-            $table->integer('procinces_id');
-            $table->integer('regencies_id');
-            $table->longText('zip_code');
-            $table->string('phone_number');
+            $table->longText('address_one')->nullable();
+            $table->longText('address_two')->nullable();
+            $table->integer('procinces_id')->nullable();
+            $table->integer('regencies_id')->nullable();
+            $table->longText('zip_code')->nullable();
+            $table->string('phone_number')->nullable();
             $table->softDeletes();
+
             $table->timestamps();
         });
     }
