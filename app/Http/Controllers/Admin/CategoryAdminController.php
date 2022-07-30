@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Category;
+use App\Http\Requests\Admin\CategoryRequest;
 
 class CategoryAdminController extends Controller
 {
@@ -46,7 +48,7 @@ class CategoryAdminController extends Controller
                 </div>';
               })
               ->editColumn('image', function ($item) {
-                  return $item->image ? '<img src="' . Storage::url($item->photo) . '" style="max-height: 40px;"/>' : '';
+                  return $item->image ? '<img src="' . Storage::url($item->image) . '" style="max-height: 40px;"/>' : '';
               })
               ->rawColumns(['action', 'image'])
               ->make();
@@ -62,7 +64,7 @@ class CategoryAdminController extends Controller
      */
     public function create()
     {
-        //
+      return view('pages.admin.category.create');
     }
 
     /**
@@ -71,9 +73,16 @@ class CategoryAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+      $data = $request->all();
+
+      $data['slug'] = Str::slug($request->name);
+      $data['image'] = $request->file('image')->store('assets/category', 'public');
+
+      Category::create($data);
+      print_r($data);
+      // return redirect()->route('category.index');
     }
 
     /**
@@ -105,7 +114,7 @@ class CategoryAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
         //
     }
