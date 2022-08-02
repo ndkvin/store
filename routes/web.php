@@ -11,7 +11,8 @@ use App\Http\Controllers\DashboardProductsController;
 use App\Http\Controllers\DashboardTransactionsController;
 use App\Http\Controllers\DashboardSettingsController;
 use App\Http\Controllers\Admin\DashboardAdminController;
-use App\Http\Controllers\Admin\DashboardUserController;
+use App\Http\Controllers\Admin\UserAdminController;
+use App\Http\Controllers\Admin\ProductAdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,5 +46,6 @@ Route::prefix('admin')
       Route::get('/', [DashboardAdminController::class, 'index'])->name('admin-dashboard');
       Route::resource('category', CategoryAdminController::class);
       Route::resource('user', UserAdminController::class);
+      Route::resource('product', ProductAdminController::class);
     });
 Auth::routes();

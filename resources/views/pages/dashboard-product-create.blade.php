@@ -99,7 +99,7 @@
   </div>    
 @endsection
 
-@push('addone-script')
+@push('addon-script')
   <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
   <script>
     CKEDITOR.replace('editor');

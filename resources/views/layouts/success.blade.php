@@ -27,8 +27,8 @@
 
     <!-- Bootstrap core JavaScript -->
      {{-- Script --}}
-    @stack('prepared-script')
+    @stack('prepend-script')
     @include('includes.script')
-    @stack('addone-script')
+    @stack('addon-script')
   </body>
 </html>

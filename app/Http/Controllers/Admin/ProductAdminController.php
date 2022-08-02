@@ -7,20 +7,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Category;
 use App\Models\User;
-use App\Http\Requests\Admin\UserRequest\CreateUserRequest;
-use App\Http\Requests\Admin\UserRequest\UpdateUserRequest;
+use App\Models\Product;
+use App\Http\Requests\Admin\ProductRequest;
 
-class UserAdminController extends Controller
+class ProductAdminController extends Controller
 {
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index() {
       if(Request()->ajax()) {
-        $query = User::query();
+        $query = Product::with(['user', 'category']);
         return Datatables::of($query)
           ->addColumn('action', function ($item) {
               return '
@@ -35,10 +36,10 @@ class UserAdminController extends Controller
                       Aksi
                     </button>
                     <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
-                      <a class="dropdown-item" href="' . route('user.edit', $item->id) . '">
+                      <a class="dropdown-item" href="' . route('product.edit', $item->id) . '">
                         Sunting
                       </a>
-                      <form action="' . route('user.destroy', $item->id) . '" method="POST">
+                      <form action="' . route('product.destroy', $item->id) . '" method="POST">
                           ' . method_field('delete') . csrf_field() . '
                         <button type="submit" class="dropdown-item text-danger">
                           Hapus
@@ -52,7 +53,7 @@ class UserAdminController extends Controller
               ->make();
       }
 
-      return view('pages.admin.user.index');
+      return view('pages.admin.product.index');
     }
 
     /**
@@ -62,7 +63,12 @@ class UserAdminController extends Controller
      */
     public function create()
     {
-      return view('pages.admin.user.create');
+      $users = User::all();
+      $categories = Category::all();
+      return view('pages.admin.product.create', [
+        'users' => $users,
+        'categories' => $categories,
+      ]);
     }
 
     /**
@@ -71,15 +77,14 @@ class UserAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateUserRequest $request)
+    public function store(ProductRequest $request)
     {
       $data = $request->all();
+      $data['slug'] = Str::slug($request->name);
 
-      $data['password'] = bcrypt($data['password']);
+      Product::create($data);
 
-      User::create($data);
-
-      return redirect()->route('user.index');
+      return redirect()->route('product.index');
     }
 
     /**
@@ -101,8 +106,8 @@ class UserAdminController extends Controller
      */
     public function edit($id)
     {
-        $data = User::findOrFail($id);
-        return view('pages.admin.user.edit', [
+        $data = Category::findOrFail($id);
+        return view('pages.admin.category.edit', [
           'item' => $data,
         ]);
     }
@@ -114,22 +119,18 @@ class UserAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateUserRequest $request, $id)
+    public function update(ProductRequest $request, $id)
     {
       $data = $request->all();
 
-      // if user edit the password
-      if($data["password"]) {
-        $data["password"] = bcrypt($data["password"]);
-      } else {
-        unset($data["password"]);
-      }
+      $data['slug'] = Str::slug($request->name);
+      $data['image'] = $request->file('image')->store('assets/category', 'public');
 
-      $item = User::findOrFail($id);
+      $item = Category::findOrFail($id);
 
       $item->update($data);
 
-      return redirect()->route('user.index');
+      return redirect()->route('category.index');
     }
 
     /**
@@ -140,8 +141,8 @@ class UserAdminController extends Controller
      */
     public function destroy($id)
     {
-      $data = User::findOrFail($id);
+      $data = Category::findOrFail($id);
       $data->delete();
-      return redirect()->route('user.index');
+      return redirect()->route('category.index');
     }
 }

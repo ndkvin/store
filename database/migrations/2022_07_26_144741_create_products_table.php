@@ -18,7 +18,8 @@ return new class extends Migration
           $table->foreignId('categories_id');
           $table->foreignId('users_id');
           $table->string('name');
-          $table->multiLineString('description');
+          $table->string('slug');
+          $table->longText('description');
           $table->integer('price');
 
           $table->softDeletes();

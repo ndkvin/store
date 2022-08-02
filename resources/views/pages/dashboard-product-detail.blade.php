@@ -117,7 +117,7 @@
   </div>
 @endsection
 
-@push('addone-script')
+@push('addon-script')
   <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
   <script>
     const thisFileUpload = () => {

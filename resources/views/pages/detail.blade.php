@@ -160,7 +160,7 @@
 @endsection
 
 
-@push('addone-script')
+@push('addon-script')
   <script src="/vendor/vue/vue.js"></script>
   <script>
     const vue = new Vue({
