@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Create Category Dashboard
+  Create Product Dashboard
 @endsection
 
 @section('content')

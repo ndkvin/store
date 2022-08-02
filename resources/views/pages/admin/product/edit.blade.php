@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Edit Category Dashboard
+  Edit Product Dashboard
 @endsection
 
 @section('content')
@@ -12,9 +12,9 @@
     >
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Catrgory</h2>
+            <h2 class="dashboard-title">Product</h2>
             <p class="dashboard-subtitle">
-                Edit Category
+                Edit Product
             </p>
         </div>
         <div class="dashboard-content">
@@ -33,32 +33,65 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
-                  <form action="{{ route('category.update', $item->id) }}" method="post" enctype="multipart/form-data">
+                  <form action="{{ route('product.update', $item->id) }}" method="post" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label for="name">Category Name</label>
+                          <label for="name">Product Name</label>
                           <input
                             type="text" 
                             class="form-control" 
                             id="name" 
                             name="name"
-                            value={{ $item->name }}
+                            value={{ $item->user->name }}
                             required
                           />
                         </div>
                         <div class="form-group">
-                          <label for="image">Category Image</label>
+                          <label for="owner">Owner</label>
+                          <select class="form-control" name="users_id" id="owner">
+                            @foreach($users as $user)
+                              <option 
+                                value={{ $user->id }} 
+                                selected={{ $item->user->id == $user->id ? true : false }}>{{ $user->name }}
+                              </option>t
+                            @endforeach
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="category">Category</label>
+                          <select class="form-control" name="categories_id" id="category">
+                            @foreach($categories as $category)
+                              <option 
+                                value={{ $category->id }}
+                                selected={{ $item->category->id == $category->id ? true : false }}
+                              >
+                                {{ $category->name }}
+                              </option>t
+                            @endforeach
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="price">price Name</label>
                           <input
-                            type="file" 
+                            type="number" 
                             class="form-control" 
-                            id="image" 
-                            name="image"
+                            id="price" 
+                            name="price"
+                            value={{ $item->price}}
+                            required
                           />
                         </div>
-                        <img src={{ Storage::url($item->image) }} alt="" class="w-25">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>Deskripsi</label>
+                            <textarea class="form-control" name="description" id="editor">  
+                              {{ $item->description }}
+                            </textarea>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="row">
@@ -77,3 +110,10 @@
     </div>
   </div>
 @endsection
+
+@push('addon-script')
+  <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+  <script>
+    CKEDITOR.replace('editor');
+  </script>
+@endpush

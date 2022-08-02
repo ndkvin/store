@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Category Dashboard
+Product Dashboard
 @endsection
 
 @section('content')
@@ -32,6 +32,7 @@
                                         <th>ID</th>
                                         <th>Nama</th>
                                         <th>Pemilik</th>
+                                        <th>Slug</th>
                                         <th>Kategori</th>
                                         <th>Harga</th>
                                         <th>Aksi</th>
@@ -63,6 +64,7 @@
         { data: 'id', name: 'id' },
         { data: 'name', name: 'name' },
         { data: 'user.name', name: 'user.name' },
+        { data: 'slug', name: 'slug' },
         { data: 'category.name', name: 'category.name' },
         { data: 'price', name: 'price' },
         {

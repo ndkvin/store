@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\User;
 use App\Models\Product;
 use App\Http\Requests\Admin\ProductRequest;
+use Illuminate\Support\Facades\DB;
 
 class ProductAdminController extends Controller
 {
@@ -106,9 +107,14 @@ class ProductAdminController extends Controller
      */
     public function edit($id)
     {
-        $data = Category::findOrFail($id);
-        return view('pages.admin.category.edit', [
+        $data = Product::with(['user', 'category'])->findOrFail($id);
+        $users = User::all();
+        $categories = Category::all();
+
+        return view('pages.admin.product.edit', [
           'item' => $data,
+          'users' => $users,
+          'categories' => $categories,
         ]);
     }
 
@@ -124,13 +130,12 @@ class ProductAdminController extends Controller
       $data = $request->all();
 
       $data['slug'] = Str::slug($request->name);
-      $data['image'] = $request->file('image')->store('assets/category', 'public');
 
-      $item = Category::findOrFail($id);
+      $item = product::findOrFail($id);
 
       $item->update($data);
 
-      return redirect()->route('category.index');
+      return redirect()->route('product.index');
     }
 
     /**
@@ -141,8 +146,8 @@ class ProductAdminController extends Controller
      */
     public function destroy($id)
     {
-      $data = Category::findOrFail($id);
+      $data = Product::findOrFail($id);
       $data->delete();
-      return redirect()->route('category.index');
+      return redirect()->route('product.index');
     }
 }
