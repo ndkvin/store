@@ -3,7 +3,7 @@
   data-aos="fade-down"
 >
   <div class="container">
-    <a href={{ Route('home') }} class="navbar-brand">
+    <a href={{ route('home') }} class="navbar-brand">
       <img src="/images/logo.svg" alt="logo">
     </a>
     <button 
@@ -17,21 +17,59 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a href={{ Route('home') }} class="nav-link">Home</a>
+          <a href={{ route('home') }} class="nav-link">Home</a>
         </li>
         <li class="nav-item">
-          <a href={{ Route('category') }} class="nav-link">Categories</a>
+          <a href={{ route('category') }} class="nav-link">Categories</a>
         </li>
         <li class="nav-item">
           <a href="/reward" class="nav-link">Reward</a>
         </li>
-        <li class="nav-item">
-          <a href={{ url('register') }} class="nav-link">Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <a href={{ url('login') }} class="btn btn-success  nav-link  px-4 text-white">Sign In</a>
-        </li>
+        @guest
+          <li class="nav-item">
+            <a href={{ route('register') }} class="nav-link">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a href={{ route('login') }} class="btn btn-success  nav-link  px-4 text-white">Sign In</a>
+          </li>
+        @endguest
       </ul>
+      @auth
+        <ul class="navbar-nav d-none d-lg-flex">
+          <li class="nav-item dropdown">
+            <a 
+              class="nav-link dropdown-toggle" 
+              href="#" 
+              id="navbarDropdown" 
+              role="button" 
+              data-toggle="dropdown" 
+              aria-haspopup="true" 
+              aria-expanded="false"
+            >
+              <img 
+                src="/images/icon-user.png" 
+                alt="user profile"
+                class="rounded-circle mr-2 profile-picture"
+              >
+              Hi, {{ Auth::user()->name }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/dashboard.html">Dashboard</a>
+              <a class="dropdown-item" href="/settings.html">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/logout.html">Logout</a>
+            </div>
+          </li>
+          <li>
+            <a href="#" class="nav-link d-inline-block mt-2">
+              <img src="images/icon-cart-empty.svg" alt="icon cart">
+              <div class="cart-badge">
+                3
+              </div>
+            </a>
+          </li>
+        </ul>
+      @endauth
     </div>
   </div>
 </nav>
