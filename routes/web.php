@@ -13,6 +13,7 @@ use App\Http\Controllers\DashboardSettingsController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\ProductAdminController;
+use App\Http\Controllers\Admin\ImageAdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,5 +48,6 @@ Route::prefix('admin')
       Route::resource('category', CategoryAdminController::class);
       Route::resource('user', UserAdminController::class);
       Route::resource('product', ProductAdminController::class);
+      Route::resource('image', ImageAdminController::class);
     });
 Auth::routes();

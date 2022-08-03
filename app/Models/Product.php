@@ -26,7 +26,7 @@ class Product extends Model
     ];
 
     public function gallery() {
-      return $this->hasMany(Gallery::class, 'products_id', 'id');
+      return $this->hasMany(Image::class, 'products_id', 'id');
     }
 
     public function user() {
