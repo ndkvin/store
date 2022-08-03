@@ -33,19 +33,19 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
-                  <form action="{{ route('product.update', $item->id) }}" method="post" enctype="multipart/form-data">
+                  <form action="{{ route('product.update', $data->id) }}" method="post" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label for="name">Product Name</label>
+                          <label for="name">Product name</label>
                           <input
                             type="text" 
                             class="form-control" 
                             id="name" 
                             name="name"
-                            value={{ $item->user->name }}
+                            value="{{ $data->name }}"
                             required
                           />
                         </div>
@@ -54,8 +54,8 @@
                           <select class="form-control" name="users_id" id="owner">
                             @foreach($users as $user)
                               <option 
-                                value={{ $user->id }} 
-                                selected={{ $item->user->id == $user->id ? true : false }}>{{ $user->name }}
+                                value="{{ $user->id }}"
+                                {{ $data->user->id == $user->id ? "selected" : "" }}>{{ $user->name }}
                               </option>t
                             @endforeach
                           </select>
@@ -66,7 +66,7 @@
                             @foreach($categories as $category)
                               <option 
                                 value={{ $category->id }}
-                                selected={{ $item->category->id == $category->id ? true : false }}
+                                {{ $data->category->id == $category->id ? "selected" : "" }}
                               >
                                 {{ $category->name }}
                               </option>t
@@ -80,7 +80,7 @@
                             class="form-control" 
                             id="price" 
                             name="price"
-                            value={{ $item->price}}
+                            value={{ $data->price }}
                             required
                           />
                         </div>
@@ -88,7 +88,7 @@
                           <div class="form-group">
                             <label>Deskripsi</label>
                             <textarea class="form-control" name="description" id="editor">  
-                              {{ $item->description }}
+                              {{ $data->description }}
                             </textarea>
                           </div>
                         </div>

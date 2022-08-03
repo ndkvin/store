@@ -30,7 +30,7 @@ class Product extends Model
     }
 
     public function user() {
-      return $this->hasOne(User::class, 'id', 'users_id');
+      return $this->belongsTo(User::class, 'users_id', 'id');
     }
 
     public function category() {

@@ -112,7 +112,7 @@ class ProductAdminController extends Controller
         $categories = Category::all();
 
         return view('pages.admin.product.edit', [
-          'item' => $data,
+          'data' => $data,
           'users' => $users,
           'categories' => $categories,
         ]);

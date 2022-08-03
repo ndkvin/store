@@ -45,7 +45,7 @@
                             class="form-control" 
                             id="name" 
                             name="name"
-                            value={{ $item->name }}
+                            value="{{ $item->name }}"
                             required
                           />
                         </div>
