@@ -54,10 +54,20 @@
               Hi, {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/dashboard.html">Dashboard</a>
-              <a class="dropdown-item" href="/settings.html">Settings</a>
+              <a class="dropdown-item" href="{{ route('home') }}">Dashboard</a>
+              <a class="dropdown-item" href="{{ route('dashboard-settings') }}">Settings</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/logout.html">Logout</a>
+              <a 
+                class="dropdown-item" 
+                href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();"
+              >
+                {{ __('Logout') }}
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
             </div>
           </li>
           <li>
