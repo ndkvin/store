@@ -16,7 +16,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $categories = Category::take(6)->get();
         $products = Product::with(['image'])->take(8)->get();
 

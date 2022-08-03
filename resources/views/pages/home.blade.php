@@ -51,7 +51,7 @@
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              <a href="#" class="component-categories d-block">
+              <a href="{{ route('category-detail', $category->slug) }}" class="component-categories d-block">
                 <div class="categories-image">
                   <img 
                     src="{{ Storage::url($category->image) }}"
@@ -95,7 +95,7 @@
               data-aos="fade-up"
               data-aos-delay="{{ $delay += 100 }}"
             >
-              <a href="/detail.html" class="component-products d-block">
+              <a href="{{ route("detail", $product->slug) }}" class="component-products d-block">
                 <div class="product-thumbnail">
                   <div 
                     class="product-image" 
@@ -125,7 +125,6 @@
               No Product Found In Database
             </div>
           @endforelse
-
         </div>
       </div>
     </section>
