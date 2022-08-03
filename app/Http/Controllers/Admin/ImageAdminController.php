@@ -131,6 +131,6 @@ class ImageAdminController extends Controller
         $data = Image::findOrfail($id);
         $data->delete();
 
-        return redirect()->route('product.index');
+        return redirect()->route('image.index');
     }
 }
