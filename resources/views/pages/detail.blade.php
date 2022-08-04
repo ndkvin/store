@@ -67,29 +67,37 @@
           <div class="row">
             <div class="col-lg-8 tag">
               <h1 class="name">
-                Sofa Ternyaman
+                {{ $product->name }}
               </h1>
               <p class="owner mt-n2">
-                By Andika Kavin
+                By {{ $product->user->name }}
               </p>
               <p class="price mt-n2">
-                $ 1409
+                $ {{ number_format($product->price) }}
               </p>
             </div> 
             <div class="col-lg-2 add-to-chart mt-n1 mt-lg-0">
-              <a href="/cart.html" type="button" class="btn btn-success w-100 btn-block">
-                Add to Chart
-              </a>
+              @auth
+                <form action="{{ url('') }}" method="post">
+                  @csrf
+                  <button 
+                    type="submit"
+                    class="btn btn-success w-100 btn-block"
+                    >
+                      Add to Chart
+                  </button>
+                </form>
+              @else
+                <a href="{{ route('login') }}" type="button" class="btn btn-success w-100 btn-block">
+                  Add to Chart
+                </a>
+              @endauth
+              
             </div>
           </div>
           <div class="row">
             <div class="col-lg-8 description mt-4 mt-lg-0">
-              <p>
-                The Nike Air Max 720 SE goes bigger than ever before with Nike's tallest Air unit yet for unimaginable, all-day comfort. There's super breathable fabrics on the upper, while colours add a modern edge.
-              </p>
-              <p>
-                Bring the past into the future with the Nike Air Max 2090, a bold look inspired by the DNA of the iconic Air Max 90. Brand-new Nike Air cushioning underfoot adds unparalleled comfort while transparent mesh and vibrantly coloured details on the upper are blended with timeless OG features for an edgy, modernised look.
-              </p>
+               {!! $product->description !!}
             </div>
           </div>
         </div>
@@ -171,22 +179,12 @@
       data: {
         activePhoto: 0,
         photos: [
-          {
-            id: 1,
-            url: "/images/product-details-1.jpg"
-          },
-          {
-            id: 2,
-            url: "/images/product-details-2.jpg"
-          },
-          {
-            id: 3,
-            url: "/images/product-details-3.jpg"
-          },
-          {
-            id: 4,
-            url: "/images/product-details-4.jpg"
-          }
+          @foreach ($product->image as $gallery)
+            {
+              id: {{ $gallery->id }},
+              url: "{{ Storage::url($gallery->file_name) }}"
+            },
+          @endforeach
         ]
       },
       methods: {

@@ -72,7 +72,7 @@
           </li>
           <li>
             <a href="#" class="nav-link d-inline-block mt-2">
-              <img src="images/icon-cart-empty.svg" alt="icon cart">
+              <img src="/images/icon-cart-empty.svg" alt="icon cart">
               <div class="cart-badge">
                 3
               </div>
