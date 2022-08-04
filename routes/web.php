@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardProductsController;
 use App\Http\Controllers\DashboardTransactionsController;
 use App\Http\Controllers\DashboardSettingsController;
+use App\Http\Controllers\CreateStoreController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\UserAdminController;
 use App\Http\Controllers\Admin\ProductAdminController;
@@ -39,6 +40,10 @@ Route::get('/dashboard/products/detail/{id}', [DashboardProductsController::clas
 Route::get('/dashboard/transactions', [DashboardTransactionsController::class, 'index'])->name('dashboard-product');
 Route::get('/dashboard/transactions/detail/{id}', [DashboardTransactionsController::class, 'detail'])->name('dashboard-detail-product');
 Route::get('/dashboard/settings', [DashboardSettingsController::class, 'store'])->name('dashboard-settings');
+Route::prefix('dashboard')
+      ->group(function() {
+          Route::resource('create-store', CreateStoreController::class);
+    });
 Route::get('/dashboard/account', [DashboardSettingsController::class, 'account'])->name('dashboard-account');
 
 // ->middleware(['auth', 'admin'])

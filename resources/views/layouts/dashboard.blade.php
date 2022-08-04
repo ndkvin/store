@@ -41,6 +41,9 @@
           <a href={{ url('dashboard/settings') }} class="list-group-item list-group-item-action {{ request()->is('dashboard/settings') ? 'active' : '' }}">
             Store Settings
           </a>
+          <a href={{ route('create-store.create') }} class="list-group-item list-group-item-action {{ request()->is('dashboard/create-store*') ? 'active' : '' }}">
+            Create Store
+          </a>
           <a href={{ url('dashboard/account') }} class="list-group-item list-group-item-action {{ request()->is('dashboard/account') ? 'active' : '' }}">
             My Account
           </a>

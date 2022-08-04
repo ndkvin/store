@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use App\Models\Category;
+use App\Models\Store;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,10 +49,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $categories = Category::all();
-        return view('auth.register', [
-          'categories' => $categories,
-        ]);
+        return view('auth.register');
     }
 
     /**
@@ -67,9 +64,6 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'store_name' => ['nullable', 'string', 'max:255'],
-            'categories_id' => ['nullable', 'integer', 'exists:category,id'],
-            'is_store_open' => ['required'],
         ]);
     }
 

@@ -106,21 +106,6 @@
                     class="custom-control-input"
                     type="radio"
                     name="is_store_open"
-                    id="openStoreTrue"
-                    v-model="is_store_open"
-                    :value="true"
-                  />
-                  <label class="custom-control-label" for="openStoreTrue"
-                    >Iya, boleh</label
-                  >
-                </div>
-                <div
-                  class="custom-control custom-radio custom-control-inline"
-                >
-                  <input
-                    class="custom-control-input"
-                    type="radio"
-                    name="is_store_open"
                     id="openStoreFalse"
                     v-model="is_store_open"
                     :value="false"
@@ -153,12 +138,7 @@
                   @enderror
               </div>
               <div class="form-group" v-if="is_store_open">
-                <label>Kategori</label>
-                <select name="category" class="form-control">
-                  @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" >{{ $category->name }}</option>
-                  @endforeach
-                </select>
+                
               </div>
               <button type="submit" class="btn btn-success btn-block mt-4">
                 Sign Up Now
@@ -173,33 +153,3 @@
     </div>
   </div>
 @endsection
-
-@push('addon-script')
-  <script src="/vendor/vue/vue.js"></script>
-  <script src="https://unpkg.com/vue-toasted"></script>
-  <script>
-    Vue.use(Toasted);
-
-    var register = new Vue({
-      el: "#register",
-      mounted() {
-        AOS.init();
-        // this.$toasted.error(
-        //   "Maaf, tampaknya email sudah terdaftar pada sistem kami.",
-        //   {
-        //     position: "top-center",
-        //     className: "rounded",
-        //     duration: 1000,
-        //   }
-        // );
-      },
-      data: {
-        name: "",
-        email: "",
-        password: "",
-        is_store_open: false,
-        store_name: "",
-      },
-    });
-  </script>
-@endpush
