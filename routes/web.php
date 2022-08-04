@@ -32,6 +32,7 @@ Route::get('/category/{id}', [CategoryController::class, 'detail'])->name('categ
 Route::get('/detail/{id}', [DetailController::class, 'index'])->name('detail');
 Route::post('/detail/{id}', [DetailController::class, 'store'])->name('add-cart');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
 Route::get('/success', [CartController::class, 'success'])->name('success');
 Route::get('/register/success', [RegisterController::class, 'success'])->name('register-success');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

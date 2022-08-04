@@ -31,6 +31,6 @@ class DetailController extends Controller
         ];
         Cart::create($data);
 
-        return view('pages.cart');
+        return redirect()->route('cart');
     }
 }
