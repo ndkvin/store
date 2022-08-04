@@ -98,64 +98,56 @@
             <h2>Shipping Details</h2>
           </div>
         </div>
-        <form action="">
+        <form action="" id="location">
           <div class="row mb-2" data-aos="fade-up" delay="200">
             <div class="col-md-6">
               <div class="form-group">
-                <label for="addressOne">Address 1</label>
+                <label for="address_one">Address 1</label>
                 <input
                   type="text" 
                   class="form-control" 
-                  id="addressOne" 
-                  name="addressOne"
+                  id="address_one" 
+                  name="address_one"
                   value="Sentra Duta Cemara"
                   >
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="addresstwo">Address 2</label>
+                <label for="address_two">Address 2</label>
                 <input
                   type="text" 
                   class="form-control" 
-                  id="addresstwo" 
-                  name="addresstwo"
+                  id="address_two" 
+                  name="address_two"
                   value="Sentra Duta Cemara"
                   >
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="Province">Province</label>
-                <input
-                  type="text" 
-                  class="form-control" 
-                  id="Province" 
-                  name="Province"
-                  value="West Java"
-                  >
+                <label for="procinces_id">Province</label>
+                <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
+                  <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+                </select>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="city">City</label>
-                <input
-                  type="text" 
-                  class="form-control" 
-                  id="city" 
-                  name="city"
-                  value="Bandung"
-                  >
+                <label for="regencies_id">City</label>
+                <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
+                  <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
+                </select>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="postalCode">Postal Code</label>
+                <label for="zip_code">Postal Code</label>
                 <input
                   type="text" 
                   class="form-control" 
-                  id="postalCode" 
-                  name="postalCode"
+                  id="zip_code" 
+                  name="zip_code"
                   value="123456"
                   >
               </div>
@@ -174,12 +166,12 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label for="mobilePhone">Mobile Phone</label>
+                <label for="phone_number">Mobile Phone</label>
                 <input
                   type="text" 
                   class="form-control" 
-                  id="mobilePhone" 
-                  name="mobilePhone"
+                  id="phone_number	" 
+                  name="phone_number	"
                   value="+628123456789"
                   >
               </div>
@@ -232,3 +224,46 @@
     </section>
   </div>
 @endsection
+
+@push('addon-script')
+  <script src="/vendor/vue/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+     var locations = new Vue({
+        el: "#location",
+        mounted() {
+          AOS.init();
+          this.getProvincesData();
+        },
+        data: {
+          provinces: null,
+          regencies: null,
+          provinces_id: null,
+          regencies_id: null,
+        },
+        methods: {
+          getProvincesData() {
+            var self = this;
+            axios.get('{{ url('api/provinces') }}')
+              .then(function (response) {
+                console.log(response)
+                  self.provinces = response.data;
+              })
+          },
+          getRegenciesData() {
+            var self = this;
+            axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+              .then(function (response) {
+                  self.regencies = response.data;
+              })
+          },
+        },
+        watch: {
+          provinces_id: function (val, oldVal) {
+            this.regencies_id = null;
+            this.getRegenciesData();
+          },
+        }
+      });
+    </script>
+@endpush

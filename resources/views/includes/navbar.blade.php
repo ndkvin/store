@@ -71,10 +71,16 @@
             </div>
           </li>
           <li>
-            <a href="#" class="nav-link d-inline-block mt-2">
-              <img src="/images/icon-cart-empty.svg" alt="icon cart">
-              <div class="cart-badge">
-                3
+            @php
+              $item = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
+            @endphp
+            <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
+              @if ($item > 0)
+                <img src="/images/icon-cart-empty.svg" alt="icon cart">
+                <div class="cart-badge">{{ $item }}</div>
+              @else    
+                <img src="/images/icon-cart-empty.svg" alt="icon cart">
+              @endif
               </div>
             </a>
           </li>
