@@ -78,7 +78,7 @@
             </div> 
             <div class="col-lg-2 add-to-chart mt-n1 mt-lg-0">
               @auth
-                <form action="{{ url('') }}" method="post">
+                <form action="{{ route('add-cart', $product->id) }}" method="post">
                   @csrf
                   <button 
                     type="submit"

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Cart;
+use Illuminate\Support\Facades\Auth;
+
 class DetailController extends Controller
 {
     
@@ -19,5 +22,15 @@ class DetailController extends Controller
       return view('pages.detail', [
         'product' => $product,
       ]);
+    }
+
+    public function store(Request $request, $id) {
+        $data = [
+          'products_id' => $id, 
+          'users_id' => Auth::user()->id,
+        ];
+        Cart::create($data);
+
+        return view('pages.cart');
     }
 }

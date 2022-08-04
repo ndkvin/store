@@ -94,52 +94,6 @@
                     </span>
                   @enderror
               </div>
-              <div class="form-group">
-                <label>Store</label>
-                <p class="text-muted">
-                  Apakah anda juga ingin membuka toko?
-                </p>
-                <div
-                  class="custom-control custom-radio custom-control-inline"
-                >
-                  <input
-                    class="custom-control-input"
-                    type="radio"
-                    name="is_store_open"
-                    id="openStoreFalse"
-                    v-model="is_store_open"
-                    :value="false"
-                  />
-                  <label
-                    makasih
-                    class="custom-control-label"
-                    for="openStoreFalse"
-                    >Enggak, makasih</label
-                  >
-                </div>
-              </div>
-              <div class="form-group" v-if="is_store_open">
-                <label>Nama Toko</label>
-                <input 
-                  id="store_name"
-                  type="text" 
-                  class="form-control 
-                    @error('store_name')
-                    @enderror" 
-                  name="store_name" 
-                  required 
-                  autocomplete="store_name"
-                  autofocus
-                >
-                  @error('store_name')
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-              </div>
-              <div class="form-group" v-if="is_store_open">
-                
-              </div>
               <button type="submit" class="btn btn-success btn-block mt-4">
                 Sign Up Now
               </button>

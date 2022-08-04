@@ -30,6 +30,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category', [CategoryController::class, 'index'])->name('category');
 Route::get('/category/{id}', [CategoryController::class, 'detail'])->name('category-detail');
 Route::get('/detail/{id}', [DetailController::class, 'index'])->name('detail');
+Route::post('/detail/{id}', [DetailController::class, 'store'])->name('add-cart');
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/success', [CartController::class, 'success'])->name('success');
 Route::get('/register/success', [RegisterController::class, 'success'])->name('register-success');
