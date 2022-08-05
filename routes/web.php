@@ -35,7 +35,7 @@ Route::post('/detail/{id}', [DetailController::class, 'store'])->name('add-cart'
 
 Route::get('/dashboard/account', [DashboardSettingsController::class, 'account'])->name('dashboard-account');
 
-Route::group(['middleware', ['auth']],function () {
+Route::group(['middleware' => ['auth']],function () {
   Route::get('/cart', [CartController::class, 'index'])->name('cart');
   Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
   Route::post('/checkout/{total}', [CheckoutController::class, 'process'])->name('checkout');
