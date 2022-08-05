@@ -24,71 +24,25 @@
           </div>
         </div>
         <div class="row mt-4">
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-4">
-            <a href={{ url('dashboard/products/detail/1111') }} class="card card-product d-block">
-              <div class="card-body  ml-n3">
-                <img src="/images/product-card-1.png" alt="product image" class="w-100 ml-2">
-                <h5 class="product-name">
-                  Shirup shiuuu
-                </h5>
-                <p class="category">
-                  food
-                </p>
-              </div>
-            </a>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-4">
-            <a href="/dashboard-product-detail.html" class="card card-product d-block">
-              <div class="card-body  ml-n3">
-                <img src="/images/product-card-1.png" alt="product image" class="w-100 ml-2">
-                <h5 class="product-name">
-                  Shirup shiuuu
-                </h5>
-                <p class="category">
-                  food
-                </p>
-              </div>
-            </a>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-4">
-            <a href="/dashboard-product-detail.html" class="card card-product d-block">
-              <div class="card-body  ml-n3">
-                <img src="/images/product-card-1.png" alt="product image" class="w-100 ml-2">
-                <h5 class="product-name">
-                  Shirup shiuuu
-                </h5>
-                <p class="category">
-                  food
-                </p>
-              </div>
-            </a>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-4">
-            <a href="/dashboard-product-detail.html" class="card card-product d-block">
-              <div class="card-body  ml-n3">
-                <img src="/images/product-card-1.png" alt="product image" class="w-100 ml-2">
-                <h5 class="product-name">
-                  Shirup shiuuu
-                </h5>
-                <p class="category">
-                  food
-                </p>
-              </div>
-            </a>
-          </div>
-          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-4">
-            <a href="/dashboard-product-detail.html" class="card card-product d-block">
-              <div class="card-body  ml-n3">
-                <img src="/images/product-card-1.png" alt="product image" class="w-100 ml-2">
-                <h5 class="product-name">
-                  Shirup shiuuu
-                </h5>
-                <p class="category">
-                  food
-                </p>
-              </div>
-            </a>
-          </div>
+          @forelse ($products as $product)
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-4">
+              <a href={{ url('dashboard/products/detail/1111') }} class="card card-product d-block">
+                <div class="card-body  ml-n3">
+                  <img src="{{ Storage::url($product->image->first()->file_name) }}" alt="product image" class="w-100 ml-2">
+                  <h5 class="product-name">
+                    {{ $product->name }}
+                  </h5>
+                  <p class="category">
+                    {{ $product->category->name }}
+                  </p>
+                </div>
+              </a>
+            </div>
+          @empty
+            <div class="col-12">
+              Epty
+            </div>
+          @endforelse
         </div>
       </div>
     </div>

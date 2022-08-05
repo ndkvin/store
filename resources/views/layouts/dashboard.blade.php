@@ -12,10 +12,9 @@
     <title>@yield('title')</title>
 
     {{-- Style --}}
-    @stack('prepared-style')
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link href="/style/main.css" rel="stylesheet" />
-    @stack('addone-style')
+    @stack('prepend-style')
+    @include('includes.style')
+    @stack('addon-style')
   </head>
 
   <body>
@@ -32,19 +31,19 @@
           <a href={{ url('dashboard') }} class="list-group-item list-group-item-action {{ request()->is('dashboard') ? 'active' : '' }}">
             Dashboard
           </a>
-          <a href={{ url('dashboard/products') }} class="list-group-item list-group-item-action {{ request()->is('dashboard/products') ? 'active' : '' }}">
+          <a href={{ url('dashboard/products') }} class="list-group-item list-group-item-action {{ request()->is('dashboard/products*') ? 'active' : '' }}">
             My Products
           </a>
-          <a href={{ url('dashboard/transactions') }} class="list-group-item list-group-item-action {{ request()->is('dashboard/transactions') ? 'active' : '' }}">
+          <a href={{ url('dashboard/transactions') }} class="list-group-item list-group-item-action {{ request()->is('dashboard/transactions*') ? 'active' : '' }}">
             Transactions
           </a>
-          <a href={{ url('dashboard/settings') }} class="list-group-item list-group-item-action {{ request()->is('dashboard/settings') ? 'active' : '' }}">
+          <a href={{ url('dashboard/settings') }} class="list-group-item list-group-item-action {{ request()->is('dashboard/settings*') ? 'active' : '' }}">
             Store Settings
           </a>
           <a href={{ route('create-store.create') }} class="list-group-item list-group-item-action {{ request()->is('dashboard/create-store*') ? 'active' : '' }}">
             Create Store
           </a>
-          <a href={{ url('dashboard/account') }} class="list-group-item list-group-item-action {{ request()->is('dashboard/account') ? 'active' : '' }}">
+          <a href={{ url('dashboard/account') }} class="list-group-item list-group-item-action {{ request()->is('dashboard/account*') ? 'active' : '' }}">
             My Account
           </a>
           <a href={{ url('logout') }} class="mt-auto list-group-item list-group-item-action ">
@@ -136,7 +135,7 @@
     <!-- Bootstrap core JavaScript -->
 
     @stack('prepend-script')
-    <script src="/vendor/jquery/jquery.slim.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
