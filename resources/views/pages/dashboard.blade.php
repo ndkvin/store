@@ -23,7 +23,7 @@
                 Customer
               </div>
               <div class="dashboard-card-subtitle">
-                1234
+                {{ $customer }}
               </div>
             </div>
           </div>
@@ -33,7 +33,7 @@
                 Revenue
               </div>
               <div class="dashboard-card-subtitle">
-                $12,345
+                ${{ number_format($revenue) }}
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
                 Transactions
               </div>
               <div class="dashboard-card-subtitle">
-                12,345,678
+                {{ number_format($transaction_count) }}
               </div>
             </div>
           </div>
@@ -53,63 +53,33 @@
             <h5 class="mb-3">
               Recent Transactions
             </h5>
-            <a href="" class="card card-list d-block mb-3 py-2">
+            @forelse ($transaction_data as $transaction)
+              <a href="" class="card card-list d-block mb-3 py-2">
+                <div class="row">
+                  <div class="col-lg-1">
+                    <img src="{{ Storage::url($transaction->product->image->first()->file_name) }}" class="w-75" alt="">
+                  </div>
+                  <div class="col-lg-3 product">
+                    {{ $transaction->product->name }}
+                  </div>
+                  <div class="col-lg-4 name">
+                    {{ $transaction->product->user->name }}
+                  </div>
+                  <div class="col-lg-3 date">
+                    12 Desember 2022
+                  </div>
+                  <div class="col-lg-1 icon">
+                    <img src="/images/dashboard-arrow-right.svg" alt="">
+                  </div>
+                </div>
+              </a>
+            @empty
               <div class="row">
-                <div class="col-lg-1">
-                  <img src="/images/dashboard-icon-product-1.png" alt="">
-                </div>
-                <div class="col-lg-3 product">
-                  Shirup majj
-                </div>
-                <div class="col-lg-4 name">
-                  Joko Tri Budi
-                </div>
-                <div class="col-lg-3 date">
-                  12 Desember 2022
-                </div>
-                <div class="col-lg-1 icon">
-                  <img src="/images/dashboard-arrow-right.svg" alt="">
+                <div class="col-12">
+                  Empty
                 </div>
               </div>
-            </a>
-            <a href="" class="card card-list d-block mb-3 py-2">
-              <div class="row">
-                <div class="col-lg-1">
-                  <img src="/images/dashboard-icon-product-1.png" alt="">
-                </div>
-                <div class="col-lg-3 product">
-                  Shirup majj
-                </div>
-                <div class="col-lg-4 name">
-                  Joko Tri Budi
-                </div>
-                <div class="col-lg-3 date">
-                  12 Desember 2022
-                </div>
-                <div class="col-lg-1 icon">
-                  <img src="/images/dashboard-arrow-right.svg" alt="">
-                </div>
-              </div>
-            </a>
-            <a href="" class="card card-list d-block mb-3 py-2">
-              <div class="row">
-                <div class="col-lg-1">
-                  <img src="/images/dashboard-icon-product-1.png" alt="">
-                </div>
-                <div class="col-lg-3 product">
-                  Shirup majj
-                </div>
-                <div class="col-lg-4 name">
-                  Joko Tri Budi
-                </div>
-                <div class="col-lg-3 date">
-                  12 Desember 2022
-                </div>
-                <div class="col-lg-1 icon">
-                  <img src="/images/dashboard-arrow-right.svg" alt="">
-                </div>
-              </div>
-            </a>
+            @endforelse
           </div>
         </div>
       </div>
