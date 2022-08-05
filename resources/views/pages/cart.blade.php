@@ -90,6 +90,19 @@
             </table>
           </div>
         </div>
+        <div class="row">
+          @if($errors->any())
+            <div class="alert alert-anger text-danger">
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li>
+                    {{ $error }}
+                  </li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+        </div>
         <div class="row shipping" data-aos="fade-up" delay="150">
           <div class="col-12" >
             <hr />
@@ -98,7 +111,8 @@
             <h2>Shipping Details</h2>
           </div>
         </div>
-        <form action="" id="location">
+        <form action="{{ route('checkout', $total) }}" method="POST" id="location">
+          @csrf
           <div class="row mb-2" data-aos="fade-up" delay="200">
             <div class="col-md-6">
               <div class="form-group">
@@ -170,8 +184,8 @@
                 <input
                   type="text" 
                   class="form-control" 
-                  id="phone_number	" 
-                  name="phone_number	"
+                  id="phone_number" 
+                  name="phone_number"
                   value="+628123456789"
                   >
               </div>
@@ -216,7 +230,7 @@
               </div>
             </div>
             <div class="col-8 col-md-3 mt-4">
-              <a href="/success.html" class="btn btn-success px-4 btn-block">Checkout Now</a>
+              <button type="submit" class="btn btn-success px-4 btn-block">Checkout Now</a>
             </div>
           </div>
         </form>

@@ -7,5 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  protected $fillable = [
+    'users_id',
+    'insurence_price',
+    'status',
+    'total_price',
+    'shipping_price',
+    'code',
+  ];
+
+  protected $hidden = [
+
+  ];
 }
