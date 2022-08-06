@@ -26,6 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'required|string',
             'categories_id' => 'required|integer|exists:categories,id',
-        ];
+            'is_open' => 'string'
+          ];
     }
 }

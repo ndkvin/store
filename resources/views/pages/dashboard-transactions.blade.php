@@ -31,63 +31,28 @@
                 <h5 class="mb-3">
                   Recent Transactions
                 </h5>
-                <a href="" class="card card-list d-block mb-3 py-2">
-                  <div class="row">
-                    <div class="col-lg-1">
-                      <img src="/images/dashboard-icon-product-1.png" alt="">
+                @forelse ($sell as $sel)
+                  <a href="" class="card card-list d-block mb-3 py-2">
+                    <div class="row">
+                      <div class="col-lg-1">
+                        <img src="{{ Storage::url($sel->product->image[0]->file_name ?? '')}}" alt="">
+                      </div>
+                      <div class="col-lg-3 product">
+                        {{ $sel->product->name }}
+                      </div>
+                      <div class="col-lg-4 name">
+                        {{ $sel->transaction->user->name }}
+                      </div>
+                      <div class="col-lg-3 date">
+                        12 Desember 2022
+                      </div>
+                      <div class="col-lg-1 icon">
+                        <img src="/images/dashboard-arrow-right.svg" alt="">
+                      </div>
                     </div>
-                    <div class="col-lg-3 product">
-                      Shirup majj
-                    </div>
-                    <div class="col-lg-4 name">
-                      Joko Tri Budi
-                    </div>
-                    <div class="col-lg-3 date">
-                      12 Desember 2022
-                    </div>
-                    <div class="col-lg-1 icon">
-                      <img src="/images/dashboard-arrow-right.svg" alt="">
-                    </div>
-                  </div>
-                </a>
-                <a href={{ url('dashboard/transactions/detail/123') }} class="card card-list d-block mb-3 py-2">
-                  <div class="row">
-                    <div class="col-lg-1">
-                      <img src="/images/dashboard-icon-product-1.png" alt="">
-                    </div>
-                    <div class="col-lg-3 product">
-                      Shirup majj
-                    </div>
-                    <div class="col-lg-4 name">
-                      Joko Tri Budi
-                    </div>
-                    <div class="col-lg-3 date">
-                      12 Desember 2022
-                    </div>
-                    <div class="col-lg-1 icon">
-                      <img src="/images/dashboard-arrow-right.svg" alt="">
-                    </div>
-                  </div>
-                </a>
-                <a href="" class="card card-list d-block mb-3 py-2">
-                  <div class="row">
-                    <div class="col-lg-1">
-                      <img src="/images/dashboard-icon-product-1.png" alt="">
-                    </div>
-                    <div class="col-lg-3 product">
-                      Shirup majj
-                    </div>
-                    <div class="col-lg-4 name">
-                      Joko Tri Budi
-                    </div>
-                    <div class="col-lg-3 date">
-                      12 Desember 2022
-                    </div>
-                    <div class="col-lg-1 icon">
-                      <img src="/images/dashboard-arrow-right.svg" alt="">
-                    </div>
-                  </div>
-                </a>
+                  </a>
+                @empty
+                @endforelse
               </div>
             </div>
           </div>

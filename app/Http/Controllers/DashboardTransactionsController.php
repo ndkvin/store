@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TransactionDetail;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardTransactionsController extends Controller
 {
@@ -14,7 +16,13 @@ class DashboardTransactionsController extends Controller
      */
 
     public function index() {
-      return view('pages.dashboard-transactions');
+      $sell = TransactionDetail::with(['transaction.user', 'product.image'])
+        ->whereHas('product', function($product) {
+          $product->where('users_id', Auth::user()->id);
+        });
+      return view('pages.dashboard-transactions', [
+        'sell' => $sell->get()
+      ]);
     }
 
     public function detail() {

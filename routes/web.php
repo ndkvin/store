@@ -35,11 +35,10 @@ Route::get('/category/{id}', [CategoryController::class, 'detail'])
     ->name('category-detail');
 Route::get('/detail/{id}', [DetailController::class, 'index'])
     ->name('detail');
-Route::post('/detail/{id}', [DetailController::class, 'store'])
-    ->name('add-cart');
-Route::get('/dashboard/account', [DashboardSettingsController::class, 'account'])->name('dashboard-account');
 
 Route::group(['middleware' => ['auth']],function () {
+  Route::post('/detail/{id}', [DetailController::class, 'store'])
+    ->name('add-cart');
   Route::get('/cart', [CartController::class, 'index'])
       ->name('cart');
   Route::delete('/cart/{id}', [CartController::class, 'delete'])
@@ -71,6 +70,9 @@ Route::group(['middleware' => ['auth']],function () {
   Route::get('/dashboard/transactions/detail/{id}', [DashboardTransactionsController::class, 'detail'])
       ->name('dashboard-detail-product');
   Route::get('/dashboard/settings', [DashboardSettingsController::class, 'store'])->name('dashboard-settings');
+  Route::get('/dashboard/account', [DashboardSettingsController::class, 'account'])->name('dashboard-account');
+  Route::post('/dashboard/account/{redirect}', [DashboardSettingsController::class, 'redirectAcc'])->name('dashboard-account-redirect');
+  Route::post('/dashboard/settings/{redirect}', [DashboardSettingsController::class, 'redirectStore'])->name('dashboard-settings-redirect');
   Route::prefix('dashboard')
         ->group(function() {
             Route::resource('create-store', CreateStoreController::class);
