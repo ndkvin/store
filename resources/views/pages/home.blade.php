@@ -101,7 +101,7 @@
                     class="product-image" 
                     style="
                       @if($product->image)
-                        background-image: url('{{ Storage::url($product->image->first()->file_name) }}');
+                        background-image: url('{{ Storage::url($product->image->first()->file_name ?? '') }}');
                       @else
                         background-color: #eee;
                       @endif

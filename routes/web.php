@@ -37,7 +37,6 @@ Route::get('/detail/{id}', [DetailController::class, 'index'])
     ->name('detail');
 Route::post('/detail/{id}', [DetailController::class, 'store'])
     ->name('add-cart');
-
 Route::get('/dashboard/account', [DashboardSettingsController::class, 'account'])->name('dashboard-account');
 
 Route::group(['middleware' => ['auth']],function () {
@@ -59,9 +58,14 @@ Route::group(['middleware' => ['auth']],function () {
       ->name('dashboard-product-create');
   Route::post('/dashboard/products/store', [DashboardProductsController::class, 'store'])
       ->name('dashboard-product-store');
-      
   Route::get('/dashboard/products/detail/{id}', [DashboardProductsController::class, 'detail'])
       ->name('dashboard-product-detail');
+  Route::get('/dashboard/products/image/delete/{id}', [DashboardProductsController::class, 'deleteImage'])
+      ->name('dashboard-product-image-delete');
+  Route::post('/dashboard/products/detail/edit/{id}', [DashboardProductsController::class, 'update'])
+      ->name('dashboard-product-detail-edit');
+  Route::post('/dashboard/products/detail/{id}', [DashboardProductsController::class, 'uploadImage'])
+      ->name('dashboard-product-detail-upload-image');
   Route::get('/dashboard/transactions', [DashboardTransactionsController::class, 'index'])
       ->name('dashboard-transaction');
   Route::get('/dashboard/transactions/detail/{id}', [DashboardTransactionsController::class, 'detail'])
@@ -72,6 +76,7 @@ Route::group(['middleware' => ['auth']],function () {
             Route::resource('create-store', CreateStoreController::class);
       });
 });
+
 Route::prefix('admin')
     ->namespace('App\Http\Controllers\Admin')
     ->middleware(['auth', 'admin'])

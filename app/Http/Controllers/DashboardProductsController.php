@@ -8,11 +8,11 @@ use App\Models\Category;
 use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ImageRequest;
 use Illuminate\Support\Str;
 
 class DashboardProductsController extends Controller
-{
-        
+{    
     /**
      * Show the application dashboard.
      *
@@ -36,8 +36,13 @@ class DashboardProductsController extends Controller
       ]);
     }
 
-    public function detail() {
-      return view('pages.dashboard-product-detail');
+    public function detail($id) {
+      $product = Product::with(['image'])->findOrFail($id);
+      $categories = Category::all();
+      return view('pages.dashboard-product-detail', [
+        'product' => $product,
+        'categories' => $categories
+      ]);
     }
 
     public function store(ProductRequest $req) {
@@ -62,5 +67,35 @@ class DashboardProductsController extends Controller
       ]);
 
       return redirect()->route('dashboard-product');
+    }
+
+    public function deleteImage($id) {
+        $image = Image::findOrFail($id);
+
+        $idF = $image->products_id;
+        $image->delete();
+      
+        return redirect()->route('dashboard-product-detail',  $idF);
+    }
+
+    public function update(ProductRequest $req, $id) {
+        $data = $req->all();
+        $data['slug'] = Str::slug($req->name);
+
+        $update = Product::findOrFail($id);
+
+        $update->update($data);
+
+        return redirect()->route('dashboard-product');
+    }
+
+    public function uploadImage(ImageRequest $req, $id) {
+      $file_name = $req->file('thumnails')->store('assets/products', 'public');
+      Image::create([
+        'products_id' => $id,
+        'file_name' => $file_name,
+      ]);
+
+      return redirect()->route('dashboard-product-detail', $id);
     }
 }

@@ -57,7 +57,7 @@
               <a href="" class="card card-list d-block mb-3 py-2">
                 <div class="row">
                   <div class="col-lg-1">
-                    <img src="{{ Storage::url($transaction->product->image->first()->file_name) }}" class="w-75" alt="">
+                    <img src="{{ Storage::url($transaction->product->image->first()->file_name ?? '') }}" class="w-75" alt="">
                   </div>
                   <div class="col-lg-3 product">
                     {{ $transaction->product->name }}

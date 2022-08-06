@@ -19,7 +19,21 @@
         <div class="card px-4 py-4">
           <div class="row">
             <div class="col-12">
-              <form action="">
+              @if($errors->any())
+                <div class="alert alert-anger text-danger">
+                  <ul>
+                    @foreach ($errors->all() as $error)
+                      <li>
+                        {{ $error }}
+                      </li>
+                    @endforeach
+                  </ul>
+                </div>
+              @endif
+            </div>
+            <div class="col-12">
+              <form action="{{ route('dashboard-product-detail-edit', $product->id) }}" method="post" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
@@ -27,10 +41,10 @@
                       <input
                         type="text"
                         class="form-control"
-                        aria-describedby="productName"
+                        aria-describedby="name"
                         name="name"
                         id="name"
-                        value="Paper"
+                        value="{{ $product->name }}"
                       />
                     </div>
                   </div>
@@ -43,7 +57,7 @@
                         aria-describedby="price"
                         name="price"
                         id="price"
-                        value="$123,456"
+                        value="{{ $product->price }}"
                       />
                     </div>
                   </div>
@@ -51,12 +65,18 @@
                     <div class="form-group">
                       <label>Category</label>
                       <select 
-                        name="category" 
+                        name="categories_id" 
                         class="form-control"
                         id="category"
                       >
-                        <option value="shipping">Shipping</option>
-                        <option value="opration">Opration</option>
+                        @foreach($categories as $category)
+                          <option 
+                            value={{ $category->id }}
+                            {{ $product->category->id == $category->id ? "selected" : "" }}
+                          >
+                            {{ $category->name }}
+                          </option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -66,13 +86,12 @@
                       <textarea
                         class="editor form-control"
                         id="editor"
-                      ></textarea>
+                        name="description"
+                      >{!! $product->description !!}</textarea>
                     </div>
                   </div>
-                </div>
-                <div class="row">
                   <div class="col-12">
-                    <button type="submit" class="w-100 btn btn-success">Create Product</button>
+                    <button type="submit" class="w-100 btn btn-success">Submit</button>
                   </div>
                 </div>
               </form>
@@ -82,33 +101,24 @@
 
         <div class="card mt-4 px-4 py-4">
           <div class="row">
-            <div class="col-md-4">
-              <div class="galerry-container">
-                <img src="/images/product-card-1.png" class="w-100" alt="product card 1">
-                <a href="" class="delete-image">
-                  <img src="/images/icon-delete.svg" alt="">
-                </a>
+            @foreach ($product->image as $image)
+              <div class="col-md-4 mt-2">
+                <div class="galerry-container">
+                  <img src="{{ Storage::url($image->file_name) }}" class="w-100" alt="product card 1">
+                  <a href="{{ route('dashboard-product-image-delete', $image->id) }}" class="delete-image">
+                    <img src="/images/icon-delete.svg" alt="">
+                  </a>
+                </div>
               </div>
-            </div>
-            <div class="col-md-4">
-              <div class="galerry-container">
-                <img src="/images/product-card-1.png" class="w-100" alt="product card 1">
-                <a href="" class="delete-image">
-                  <img src="/images/icon-delete.svg" alt="">
-                </a>
+            @endforeach
+            <div class="col-12 mt-4 mb-4">
+              <div class="col-12">
+                <form action="{{ route('dashboard-product-detail-upload-image', $product->id) }}" method="post" enctype="multipart/form-data">
+                  @csrf
+                  <input onchange="form.submit()" class="d-none" type="file" name="thumnails" id="file">
+                  <button type="button" class="w-100 btn btn-success" onclick="thisFileUpload()">Add Image</button>
+                </form>
               </div>
-            </div>
-            <div class="col-md-4">
-              <div class="galerry-container">
-                <img src="/images/product-card-1.png" class="w-100" alt="product card 1">
-                <a href="" class="delete-image">
-                  <img src="/images/icon-delete.svg" alt="">
-                </a>
-              </div>
-            </div>
-            <div class="col-12 mt-4">
-              <input type="file" name="" id="file" style="display: none" multiple>
-              <button type="submit" class="w-100 btn btn-success" onclick="thisFileUpload()">Add Image</button>
             </div>
           </div>
         </div>

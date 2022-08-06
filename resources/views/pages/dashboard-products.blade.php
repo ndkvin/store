@@ -26,9 +26,9 @@
         <div class="row mt-4">
           @forelse ($products as $product)
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-4">
-              <a href={{ url('dashboard/products/detail/1111') }} class="card card-product d-block">
+              <a href={{ route('dashboard-product-detail', $product->id) }} class="card card-product d-block">
                 <div class="card-body  ml-n3">
-                  <img src="{{ Storage::url($product->image->first()->file_name) }}" alt="product image" class="w-100 ml-2">
+                  <img src="{{ Storage::url($product->image->first()->file_name ?? '') }}" alt="product image" class="w-100 ml-2">
                   <h5 class="product-name">
                     {{ $product->name }}
                   </h5>
