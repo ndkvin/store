@@ -31,7 +31,7 @@ class DashboardSettingsController extends Controller
 
 
     public function account() {
-        $user =  User::firstOrFail(Auth::user()->id);
+        $user =  User::where('id', Auth::user()->id)->firstOrFail();
 
 
         return view('pages.dashboard-account', [

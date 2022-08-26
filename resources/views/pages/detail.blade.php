@@ -29,31 +29,17 @@
         <div class="row">
           <div class="col-lg-8" data-aos="zoom-in">
             <transition name="slide-fade" mode="out-in">
-              <img 
-                v-bind:src="photos[activePhoto].url" 
-                :key="photos[activePhoto].url" 
-                alt="detail image"
-                class="w-100 main-image"
-              >
+              <img v-bind:src="photos[activePhoto].url" :key="photos[activePhoto].url" alt="detail image"
+                class="w-100 main-image">
             </transition>
           </div>
           <div class="col-lg-2">
             <div class="row">
-              <div 
-                class="col-3 col-lg-12 mt-4 mb-lg-3 mt-lg-0" 
-                v-for="(photo, index) in photos"
-                :key="photo.id"
-                data-aos="zoom-in"
-                data-aos-delay="100"
-              >
-                <a href="#" 
-                  @click="changeActiveId(index)">
-                  <img 
-                    :src="photo.url" 
-                    alt="image"
-                    class="w-100 thumbnail-image"
-                    :class="{ active : index == activePhoto }"
-                  >
+              <div class="col-3 col-lg-12 mt-4 mb-lg-3 mt-lg-0" v-for="(photo, index) in photos" :key="photo.id"
+                data-aos="zoom-in" data-aos-delay="100">
+                <a href="#" @click="changeActiveId(index)">
+                  <img :src="photo.url" alt="image" class="w-100 thumbnail-image"
+                    :class="{ active: index == activePhoto }">
                 </a>
               </div>
             </div>
@@ -75,16 +61,13 @@
               <p class="price mt-n2">
                 $ {{ number_format($product->price) }}
               </p>
-            </div> 
+            </div>
             <div class="col-lg-2 add-to-chart mt-n1 mt-lg-0">
               @auth
                 <form action="{{ route('add-cart', $product->id) }}" method="post">
                   @csrf
-                  <button 
-                    type="submit"
-                    class="btn btn-success w-100 btn-block"
-                    >
-                      Add to Chart
+                  <button type="submit" class="btn btn-success w-100 btn-block">
+                    Add to Chart
                   </button>
                 </form>
               @else
@@ -92,12 +75,12 @@
                   Add to Chart
                 </a>
               @endauth
-              
+
             </div>
           </div>
           <div class="row">
             <div class="col-lg-8 description mt-4 mt-lg-0">
-               {!! $product->description !!}
+              {!! $product->description !!}
             </div>
           </div>
         </div>
@@ -115,53 +98,47 @@
             <div class="col-lg-8 review-body">
               <ul class="list-unstyled">
                 <li class="media review-item">
-                  <img
-                    src="/images/icons-testimonial-1.png" 
-                    alt="user review profile"
-                    class="testimoni-image rounded-circle mt-2"
-                  >
+                  <img src="/images/icons-testimonial-1.png" alt="user review profile"
+                    class="testimoni-image rounded-circle mt-2">
                   <div class="review-text">
                     <h5 class="name">
                       Hazza Risky
                     </h5>
                     <p class="review-content">
-                      I thought it was not good for living room. I really happy to decided buy this product last week now feels like homey.
+                      I thought it was not good for living room. I really happy to decided buy this product last week now
+                      feels like homey.
                     </p>
                   </div>
                 </li>
                 <li class="media review-item">
-                  <img
-                    src="/images/icons-testimonial-1.png" 
-                    alt="user review profile"
-                    class="testimoni-image rounded-circle mt-2"
-                  >
+                  <img src="/images/icons-testimonial-1.png" alt="user review profile"
+                    class="testimoni-image rounded-circle mt-2">
                   <div class="review-text">
                     <h5 class="name">
                       Hazza Risky
                     </h5>
                     <p class="review-content">
-                      I thought it was not good for living room. I really happy to decided buy this product last week now feels like homey.
+                      I thought it was not good for living room. I really happy to decided buy this product last week now
+                      feels like homey.
                     </p>
                   </div>
                 </li>
                 <li class="media review-item">
-                  <img
-                    src="/images/icons-testimonial-1.png" 
-                    alt="user review profile"
-                    class="testimoni-image rounded-circle mt-2"
-                  >
+                  <img src="/images/icons-testimonial-1.png" alt="user review profile"
+                    class="testimoni-image rounded-circle mt-2">
                   <div class="review-text">
                     <h5 class="name">
                       Hazza Risky
                     </h5>
                     <p class="review-content">
-                      I thought it was not good for living room. I really happy to decided buy this product last week now feels like homey.
+                      I thought it was not good for living room. I really happy to decided buy this product last week now
+                      feels like homey.
                     </p>
                   </div>
                 </li>
               </ul>
             </div>
-        </div>
+          </div>
       </section>
     </div>
   </div>

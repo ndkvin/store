@@ -35,7 +35,7 @@ class Regency extends Model
         'province_id'
     ];
 
-    /**
+    /**z
      * Regency belongs to Province.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
